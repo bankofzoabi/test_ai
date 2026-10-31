@@ -1,0 +1,45 @@
+import random
+
+
+def generate_secret_number():
+    return random.randint(1, 100)
+
+
+def get_guess():
+    guess = int(input("Guess a number from 1 to 100: "))
+    return guess
+
+
+def check_guess(guess, secret):
+    if guess < secret:
+        return "Too low"
+    elif guess > secret:
+        return "Too high"
+    else:
+        return "Correct"
+
+
+def play_game():
+    secret = generate_secret_number()
+    attempts = 0
+
+    while True:
+        guess = get_guess()
+        attempts += 1
+
+        result = check_guess(guess, secret)
+        print(result)
+
+        if result == "Correct":
+            print("Attempts:", attempts)
+
+            again = input("Play again? yes/no: ").lower()
+
+            if again == "yes":
+                secret = generate_secret_number()
+                attempts = 0
+            else:
+                break
+
+
+play_game()
